@@ -1,0 +1,9 @@
+pre-commit:
+  commands:
+    tests:
+      run: mvn -q test
+
+commit-msg:
+  commands:
+    message:
+      run: ./scripts/validate-commit-msg.sh
