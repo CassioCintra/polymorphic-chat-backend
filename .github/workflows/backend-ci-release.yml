@@ -19,17 +19,25 @@ jobs:
         shell: bash
         run: |
           labels='${{ toJson(github.event.pull_request.labels.*.name) }}'
-          if echo "$labels" | grep -q "release:major"; then
-            echo "type=major" >> $GITHUB_OUTPUT
-          elif echo "$labels" | grep -q "release:minor"; then
-            echo "type=minor" >> $GITHUB_OUTPUT
+          echo "PR labels: $labels"
+
+          if echo "$labels" | grep -q '"release:major"'; then
+            echo "type=major" >> "$GITHUB_OUTPUT"
+          elif echo "$labels" | grep -q '"release:minor"'; then
+            echo "type=minor" >> "$GITHUB_OUTPUT"
           else
-            echo "type=patch" >> $GITHUB_OUTPUT
+            echo "type=patch" >> "$GITHUB_OUTPUT"
           fi
 
-  call_infra:
-    if: ${{ needs.detect_bump.result == 'success' }}
+
+  release:
     needs: [detect_bump]
+    if: >- 
+      ${{ 
+        github.event.pull_request.merged == true && 
+        github.event.pull_request.head.ref == 'development' && 
+        needs.detect_bump.result == 'success' 
+      }}
     uses: CassioCintra/polymorphic-chat-infra/.github/workflows/release.yml@master
     with:
       repo: CassioCintra/polymorphic-chat-backend
