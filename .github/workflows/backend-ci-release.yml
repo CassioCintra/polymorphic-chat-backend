@@ -1,0 +1,41 @@
+name: release-backend
+
+on:
+  pull_request:
+    branches: ["master"]
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  detect_bump:
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'development' }}
+    runs-on: ubuntu-latest
+    outputs:
+      bump_type: ${{ steps.bump.outputs.type }}
+    steps:
+      - id: bump
+        shell: bash
+        run: |
+          labels='${{ toJson(github.event.pull_request.labels.*.name) }}'
+          if echo "$labels" | grep -q "release:major"; then
+            echo "type=major" >> $GITHUB_OUTPUT
+          elif echo "$labels" | grep -q "release:minor"; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+          else
+            echo "type=patch" >> $GITHUB_OUTPUT
+          fi
+
+  call_infra:
+    if: ${{ needs.detect_bump.result == 'success' }}
+    needs: [detect_bump]
+    uses: CassioCintra/polymorphic-chat-infra/.github/workflows/release.yml@master
+    with:
+      repo: CassioCintra/polymorphic-chat-backend
+      project: polymorphic-chat-backend
+      project_key: backend
+      build_type: maven
+      bump_type: ${{ needs.detect_bump.outputs.bump_type }}
+      docker_image: cassiocintra/polymorphic-chat-backend
+    secrets: inherit
