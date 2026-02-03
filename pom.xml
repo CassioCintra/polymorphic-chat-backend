@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>io.cassio</groupId>
 	<artifactId>chat</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>Polymorphic Chat</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
