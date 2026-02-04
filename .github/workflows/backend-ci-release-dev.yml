@@ -14,5 +14,5 @@ jobs:
     with:
       repo: CassioCintra/polymorphic-chat-backend
       docker_image: cassiocintra/polymorphic-chat-backend-dev
-      version_tag: dev-latest
+      version_tag: development
     secrets: inherit
