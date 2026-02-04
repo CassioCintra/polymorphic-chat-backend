@@ -1,0 +1,18 @@
+name: docker-build-dev
+
+on:
+  push:
+    branches: ["development"]
+
+permissions:
+  contents: read
+
+jobs:
+  docker_image:
+    name: Build Docker Dev Image
+    uses: CassioCintra/polymorphic-chat-infra/.github/workflows/stage-docker.yml@master
+    with:
+      repo: CassioCintra/polymorphic-chat-backend
+      docker_image: cassiocintra/polymorphic-chat-backend-dev
+      version_tag: development
+    secrets: inherit
