@@ -1,0 +1,17 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Maven / Java build
+target/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment / local files
+.env
+.env.*
