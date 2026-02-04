@@ -1,0 +1,21 @@
+name: docker-build-dev
+
+on:
+  push:
+    branches: ["development"]
+
+permissions:
+  contents: write
+
+jobs:
+  docker_image:
+    name: Build Docker Dev Image
+    uses: CassioCintra/polymorphic-chat-infra/.github/workflows/release.yml@master
+    with:
+      repo: CassioCintra/polymorphic-chat-backend
+      project: Polymorphic Chat - Dev - Backend
+      project_key: backend
+      build_type: maven
+      bump_type: patch
+      docker_image: cassiocintra/polymorphic-chat-backend-dev
+    secrets: inherit
