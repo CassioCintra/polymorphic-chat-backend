@@ -3,17 +3,16 @@ package io.cassio.polymorphic.user.infrastructure.persistence.repository;
 import io.cassio.polymorphic.containers.TestContainers;
 import io.cassio.polymorphic.factory.UserTestFactory;
 import io.cassio.polymorphic.user.domain.model.User;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.data.mongodb.test.autoconfigure.DataMongoTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.mongodb.MongoDBContainer;
 import reactor.test.StepVerifier;
 
-@SpringBootTest
+@DataMongoTest
 @Import({ UserRepositoryAdapter.class })
 class UserRepositoryAdapterIntegrationTest {
 
