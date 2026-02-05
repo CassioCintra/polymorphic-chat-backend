@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework.boot.context.config: DEBUG
+    logging.level.reactor.netty.http.client.HttpClient: INFO
+    reactor.netty.http.client: INFO
+    reactor.netty.transport: DEBUG
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  docker:
+    compose:
+      enabled: false
+  devtools:
+    restart:
+      enabled: false

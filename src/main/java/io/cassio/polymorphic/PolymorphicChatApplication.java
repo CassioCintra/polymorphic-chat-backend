@@ -1,4 +1,4 @@
-package io.cassio.chat;
+package io.cassio.polymorphic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

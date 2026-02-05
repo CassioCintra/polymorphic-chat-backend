@@ -1,3 +1,20 @@
 spring:
   application:
     name: Polymorphic Chat
+
+  data:
+    mongodb:
+      auto-index-creation: true
+
+  mongodb:
+
+    host: ${MONGODB_HOST:localhost}
+    port: ${MONGODB_PORT:27017}
+    database: polymorphic_chat
+    username: ${MONGODB_USER:polymorphic}
+    password: ${MONGODB_PASSWORD:polymorphic}
+    authentication-database: admin
+
+security:
+  bcrypt:
+    strength: ${BCRYPT_STRENGTH:12}
