@@ -2,7 +2,6 @@ package io.cassio.polymorphic.user.infrastructure.web.dto;
 
 import io.cassio.polymorphic.user.domain.model.RegisterUserCommand;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public record RegisterUserRequest(
         @NotBlank String username,

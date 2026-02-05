@@ -1,8 +1,6 @@
 package io.cassio.polymorphic.user.infrastructure.web;
 
-
 import io.cassio.polymorphic.user.application.usecase.RegisterUser;
-import io.cassio.polymorphic.user.domain.model.User;
 import io.cassio.polymorphic.user.infrastructure.web.dto.RegisterUserRequest;
 import io.cassio.polymorphic.user.infrastructure.web.dto.RegisterUserResponse;
 import jakarta.validation.Valid;

@@ -1,7 +1,6 @@
 package io.cassio.polymorphic.user.domain.model;
 
 import lombok.Builder;
-
 import java.util.UUID;
 
 @Builder
