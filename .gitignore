@@ -15,3 +15,4 @@ Thumbs.db
 # Environment / local files
 .env
 .env.*
+src/main/resources/local.p12
