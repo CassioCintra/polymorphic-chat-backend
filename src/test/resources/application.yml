@@ -14,3 +14,14 @@ spring:
   devtools:
     restart:
       enabled: false
+
+security:
+  bcrypt:
+    strength: 4
+  jwt:
+    secret: dev-secret-only-for-local
+
+app:
+  cookies:
+    secure: true
+    same-site: Lax
