@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 @Order(0)
 @RestControllerAdvice(basePackages = "io.cassio.polymorphic.user")
 public class UserExceptionHandler {
@@ -21,7 +20,6 @@ public class UserExceptionHandler {
             EmailAlreadyInUseException ex,
             ServerWebExchange exchange
     ) {
-        log.warn("Email already in use: {}", ex.getMessage());
         return Mono.just(ResponseEntity.status(HttpStatus.CONFLICT).body(
                 ErrorResponse.of(
                         "EMAIL_ALREADY_IN_USE",
@@ -38,7 +36,6 @@ public class UserExceptionHandler {
             UsernameAlreadyInUseException ex,
             ServerWebExchange exchange
     ) {
-        log.warn("Username already in use: {}", ex.getMessage());
         return Mono.just(ResponseEntity.status(HttpStatus.CONFLICT).body(
                 ErrorResponse.of(
                         "USERNAME_ALREADY_IN_USE",

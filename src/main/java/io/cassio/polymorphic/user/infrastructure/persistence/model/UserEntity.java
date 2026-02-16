@@ -1,5 +1,6 @@
 package io.cassio.polymorphic.user.infrastructure.persistence.model;
 
+import io.cassio.polymorphic.auth.application.port.UserAuthQuery;
 import io.cassio.polymorphic.user.domain.model.Email;
 import io.cassio.polymorphic.user.domain.model.HashedPassword;
 import io.cassio.polymorphic.user.domain.model.User;
@@ -40,10 +41,19 @@ public class UserEntity {
 
     public User toDomain() {
         return User.builder()
-                .uuid(UUID.fromString(this.uuid))
-                .username(new Username(this.username))
-                .email(new Email(this.email))
-                .password(new HashedPassword(this.hashedPassword))
+                .uuid(UUID.fromString(this.getUuid()))
+                .username(new Username(this.getUsername()))
+                .email(new Email(this.getEmail()))
+                .password(new HashedPassword(this.getHashedPassword()))
                 .build();
+    }
+
+    public UserAuthQuery.UserAuthView toAuthView(){
+        return new UserAuthQuery.UserAuthView(
+                this.getUuid(),
+                this.getUsername(),
+                this.getEmail(),
+                this.getHashedPassword()
+        );
     }
 }
