@@ -1,5 +1,7 @@
 package io.cassio.polymorphic.user.infrastructure.web;
 
+import io.cassio.polymorphic.auth.application.port.TokenVerifier;
+import io.cassio.polymorphic.config.SpringSecurityConfig;
 import io.cassio.polymorphic.factory.UserTestFactory;
 import io.cassio.polymorphic.user.application.usecase.RegisterUser;
 import io.cassio.polymorphic.user.domain.model.RegisterUserCommand;
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webflux.test.autoconfigure.WebFluxTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -19,15 +22,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.reactive.server.SecurityMockServerConfigurers.csrf;
 
-@WithMockUser
+@Import(value = { SpringSecurityConfig.class })
 @WebFluxTest(controllers = UserController.class)
 class UserControllerTest {
 
-    @Autowired
-    private WebTestClient webTestClient;
+    @MockitoBean private RegisterUser registerUser;
+    @MockitoBean private TokenVerifier tokenVerifier;
 
-    @MockitoBean
-    private RegisterUser registerUser;
+    @Autowired private WebTestClient webTestClient;
 
     private final User domainUser = UserTestFactory.generateUser();
     private final RegisterUserCommand request = new RegisterUserCommand(

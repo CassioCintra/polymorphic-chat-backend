@@ -1,13 +1,10 @@
 spring:
   application:
     name: Polymorphic Chat
-
   data:
     mongodb:
       auto-index-creation: true
-
   mongodb:
-
     host: ${MONGODB_HOST:localhost}
     port: ${MONGODB_PORT:27017}
     database: polymorphic_chat
@@ -18,3 +15,24 @@ spring:
 security:
   bcrypt:
     strength: ${BCRYPT_STRENGTH:12}
+  jwt:
+    secret: ${JWT_SECRET:OPGUxztUJ0+mj5rWoolwe+bxQ7glv3GpLyIrC4PIEMU=}
+  token:
+    access:
+      expiration: 300
+    refresh:
+      expiration: 2592000
+
+app:
+  cookies:
+    secure: true
+    same-site: Lax
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:local.p12
+    key-store-password: password
+    key-store-type: PKCS12
+    key-alias: local

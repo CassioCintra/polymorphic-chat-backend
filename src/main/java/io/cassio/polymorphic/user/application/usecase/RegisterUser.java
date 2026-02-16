@@ -8,7 +8,6 @@ import io.cassio.polymorphic.user.domain.model.RegisterUserCommand;
 import io.cassio.polymorphic.user.domain.model.User;
 import io.cassio.polymorphic.user.application.port.UserRepository;
 import io.cassio.polymorphic.user.domain.model.Username;
-import io.cassio.polymorphic.user.infrastructure.web.dto.RegisterUserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
