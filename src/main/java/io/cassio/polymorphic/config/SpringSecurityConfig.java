@@ -23,6 +23,7 @@ public class SpringSecurityConfig {
                         .pathMatchers("/api/csrf").permitAll()
                         .pathMatchers("/api/user/register").permitAll()
                         .pathMatchers("/api/auth/**").permitAll()
+                        .pathMatchers("/api/ws/chat").authenticated()
                         .anyExchange().authenticated()
                 )
                 .addFilterBefore(new JwtCookieWebFilter(tokenVerifier), SecurityWebFiltersOrder.AUTHENTICATION)
