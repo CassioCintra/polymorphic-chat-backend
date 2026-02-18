@@ -36,3 +36,13 @@ server:
     key-store-password: password
     key-store-type: PKCS12
     key-alias: local
+
+ai:
+  cohere:
+    base-url: https://api.cohere.com
+    api-key: ${COHERE_API_KEY}
+    model: command-a-03-2025
+  gemini:
+    base-url: https://generativelanguage.googleapis.com
+    api-key: ${GEMINI_API_KEY}
+    model: gemini-2.5-flash-lite
