@@ -3,7 +3,8 @@ package io.cassio.polymorphic.chat.domain;
 import java.util.Locale;
 
 public enum AiType {
-    COHERE("cohere");
+    COHERE("cohere"),
+    GEMINI("gemini");
 
     private final String aiName;
 
